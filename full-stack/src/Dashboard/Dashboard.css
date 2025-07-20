@@ -1,12 +1,86 @@
+/**
+ * Dashboard Styles
+ * 
+ * This file contains all the styling for the dashboard.
+ * Feel free to modify colors, sizes, and effects here.
+ */
+
+/* Main dashboard container - covers the whole screen */
 .dashboard {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 100vh;  /* Full screen height */
+  width: 100vw;       /* Full screen width */
   margin: 0;
   padding: 0;
   position: fixed;
   top: 0;
   left: 0;
-  overflow: auto;
+
+}
+
+/* Dashboard title styling */
+.dashboard-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);  /* Center the title */
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  z-index: 10;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);  /* Add shadow for better readability */
+}
+
+/* Base styling for all textboxes */
+.textbox-base {
+  padding: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);  /* Semi-transparent white border */
+  border-radius: 10px;                         /* Rounded corners */
+  background: rgba(255, 255, 255, 0.1);        /* Semi-transparent background */
+  backdrop-filter: blur(10px);                 /* Blur effect behind textbox */
+  color: white;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  resize: none;                                /* Prevent manual resizing */
+  outline: none;                               /* Remove default outline */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* Drop shadow */
+  z-index: 10;
+}
+
+/* Placeholder text styling */
+.textbox-base::placeholder {
+  color: rgba(255, 255, 255, 0.7);  /* Light gray placeholder text */
+}
+
+/* Textbox styling when clicked/focused */
+.textbox-base:focus {
+  border-color: rgba(255, 255, 255, 0.5);     /* Brighter border when focused */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  /* Larger shadow when focused */
+  transform: translateY(-2px);                /* Slight lift effect */
+}
+
+/* Small textbox size */
+.textbox-small {
+  width: 250px;
+  height: 150px;
+  font-size: 14px;
+  padding: 12px;
+}
+
+/* Medium textbox size (default) */
+.textbox-medium {
+  width: 300px;
+  height: 200px;
+  font-size: 16px;
+  padding: 15px;
+}
+
+/* Large textbox size */
+.textbox-large {
+  width: 400px;
+  height: 300px;
+  font-size: 18px;
+  padding: 20px;
 }
 
