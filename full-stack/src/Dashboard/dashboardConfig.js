@@ -1,16 +1,10 @@
-/**
- * Dashboard Configuration File
- * 
- * This file contains all the settings for your dashboard.
- * You can easily modify colors, add textboxes, and change the layout here.
- */
 
-// Main dashboard configuration
+//dashboard configuration
 export const dashboardConfig = {
   
   // Dashboard header settings
   header: {
-    title: "Dashboard", // Change this to customize your dashboard title
+    title: "Dashboard", // dashboard title
   },
   
   // Color and styling theme
@@ -20,8 +14,8 @@ export const dashboardConfig = {
       end: "#764ba2",      // Ending color of gradient (purple)  
       direction: "135deg"  // Gradient direction
     },
-    textColor: "white",              // Text color
-    fontFamily: "Arial, sans-serif"  // Font family
+    textColor: "white",              
+    fontFamily: "Arial, sans-serif"  
   },
   
   // List of textboxes to display on the dashboard
@@ -36,31 +30,12 @@ export const dashboardConfig = {
       initialValue: "",                          // Starting text (empty by default)
     },
     
-    // To add more textboxes, copy the above object and change the values:
-    /*
-    {
-      id: "second-textbox",
-      placeholder: "Another textbox...",
-      position: { top: "50%", right: "25%" },
-      size: "small",
-      rows: 5,
-      cols: 30,
-      initialValue: "Hello World!"
-    }
-    */
   ]
 };
 
 
 /**
  * Helper function to create a new textbox easily
- * 
- * Example usage:
- * const myTextbox = createTextbox("my-textbox", {
- *   placeholder: "Type here...",
- *   position: { top: "30%", left: "50%" },
- *   size: "large"
- * });
  */
 export const createTextbox = (id, options = {}) => {
   return {
