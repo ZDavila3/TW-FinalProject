@@ -12,7 +12,7 @@ export const dashboardConfig = {
     gradientColors: {
       start: "#667eea",    // Starting color of gradient (blue)
       end: "#764ba2",      // Ending color of gradient (purple)  
-      direction: "135deg"  // Gradient direction
+      direction: "135deg"  // Gradient coloring direction
     },
     textColor: "white",              
     fontFamily: "Arial, sans-serif"  
@@ -33,9 +33,8 @@ export const dashboardConfig = {
   ]
 };
 
-
 /**
- * Helper function to create a new textbox easily
+ * create a new textbox easily
  */
 export const createTextbox = (id, options = {}) => {
   return {

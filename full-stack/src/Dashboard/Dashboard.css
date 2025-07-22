@@ -15,7 +15,13 @@
   position: fixed;
   top: 0;
   left: 0;
+  padding-left: 60px; /* Account for collapsed navbar */
+  transition: padding-left 0.3s ease;
+}
 
+/* Adjust content when navbar is expanded */
+.dashboard.navbar-expanded {
+  padding-left: 250px;
 }
 
 /* Dashboard title styling */
@@ -55,7 +61,7 @@
 
 /* Textbox styling when clicked/focused */
 .textbox-base:focus {
-  border-color: rgba(255, 255, 255, 0.5);     /* Brighter border when focused */
+  border-color: rgba(125, 12, 143, 0.5);     /* Brighter border when focused */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  /* Larger shadow when focused */
   transform: translateY(-2px);                /* Slight lift effect */
 }

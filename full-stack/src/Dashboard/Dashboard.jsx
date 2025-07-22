@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Dashboard.css';
 import { dashboardConfig } from './dashboardConfig.js';
+import Navbar from './Navbar.jsx';
 
 /**
- * Dashboard Component - Main dashboard page with textboxes
- * 
- * This component renders a dashboard with a title and textboxes
- * based on the configuration in dashboardConfig.js
+ * renders a dashboard with a title and textboxes
+ * based on dashboardConfig.js
  */
 const Dashboard = () => {
+  const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
   
   // Function to get the right CSS class for textbox size
   const getTextboxSizeClass = (size) => {
@@ -34,7 +34,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${isNavbarExpanded ? 'navbar-expanded' : ''}`}>
+      <Navbar onToggle={setIsNavbarExpanded} />
+      
       {/* Dashboard Title */}
       <h1 className="dashboard-title">
         {dashboardConfig.header.title}
