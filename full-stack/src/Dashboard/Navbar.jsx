@@ -20,20 +20,31 @@ const Navbar = ({ onToggle }) => {
   const navItems = [
     {
       id: 'dashboard',
-      icon: '/svg_icons/dashboard_25dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
+      icon: '/svg_icons/dashboardIcon.svg',
       label: 'Dashboard',
       active: true
     },
     {
+      id: 'dictionary',
+      icon: '/svg_icons/dictionaryIcon.svg',
+      label: 'Dictionary'
+    },
+    {
+      id: 'history',
+      icon: '/svg_icons/historyIcon.svg',
+      label: 'History'
+    },
+    {
       id: 'help',
-      icon: '/svg_icons/help_25dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
+      icon: '/svg_icons/helpIcon.svg',
       label: 'Help'
     },
     {
       id: 'logout',
-      icon: '/svg_icons/exit_to_app_25dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
+      icon: '/svg_icons/exitIcon.svg',
       label: 'Logout'
     }
+
   ];
 
   return (
@@ -45,7 +56,7 @@ const Navbar = ({ onToggle }) => {
         aria-label="Toggle navigation"
       >
         <img 
-          src="/svg_icons/menu_25dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" 
+          src="/svg_icons/menuIcon.svg" 
           alt="Menu"
           className="menu-icon"
         />
