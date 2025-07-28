@@ -55,6 +55,27 @@ const Dashboard = () => {
           defaultValue={textbox.initialValue}
         />
       ))}
+      
+  
+      {/* Renders simple text to the dashboard */}
+      {dashboardConfig.textElements?.map((textElement) => (
+        <div
+          key={textElement.id}
+          id={textElement.id}
+          className="text-element"
+          style={{
+            position: 'absolute',
+            top: textElement.position.top,
+            left: textElement.position.left,
+            color: 'white',
+            fontFamily: 'Arial, sans-serif',
+            zIndex: 10,
+            ...textElement.style
+          }}
+        >
+          {textElement.text}
+        </div>
+      ))}
     </div>
   );
 };

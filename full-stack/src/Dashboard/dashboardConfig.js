@@ -1,4 +1,3 @@
-
 //dashboard configuration
 export const dashboardConfig = {
   
@@ -24,17 +23,39 @@ export const dashboardConfig = {
       id: "main-textbox",                        // Unique name for this textbox
       placeholder: "Enter your text here...",    // Placeholder text
       position: { top: "20%", left: "25%" },     // Where to place the textbox
-      size: "medium",                            // Size: "small", "medium", or "large"
+      size: "medium",                           
       rows: 8,                                   // Number of rows (height)
       cols: 40,                                  // Number of columns (width)
       initialValue: "",                          // Starting text (empty by default)
     },
-    
+  ],
+
+  //simple text elements
+  textElements: [
+    {
+      id: "welcome-text",
+      text: "Welcome to the Translation Dashboard",
+      position: { top: "10%", left: "50%" },
+      style: {
+        fontSize: "1.5rem",
+        textAlign: "center",
+        transform: "translateX(-50%)"
+      }
+    },
+    {
+      id: "instruction-text", 
+      text: "Please copy and paste the text you want to translate here. Or upload your file to translate.",
+      position: { top: "15%", left: "25%" },
+      style: {
+        fontSize: "1rem"
+      }
+    }
   ]
 };
 
+
 /**
- * create a new textbox easily
+ * create a new textbox
  */
 export const createTextbox = (id, options = {}) => {
   return {
@@ -46,4 +67,5 @@ export const createTextbox = (id, options = {}) => {
     cols: options.cols || 30,
     initialValue: options.initialValue || ""
   };
+
 };
