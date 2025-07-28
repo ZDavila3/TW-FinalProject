@@ -38,10 +38,12 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);  /* Add shadow for better readability */
 }
 
+
 /* Base styling for all textboxes */
 .textbox-base {
   padding: 15px;
-  border: 2px solid rgba(255, 255, 255, 0.3);  /* Semi-transparent white border */
+  padding-right: 45px;
+  border: 2px solid rgba(255, 255, 255, 0.3);  
   border-radius: 10px;                         /* Rounded corners */
   background: rgba(255, 255, 255, 0.1);        /* Semi-transparent background */
   backdrop-filter: blur(10px);                 /* Blur effect behind textbox */
@@ -52,6 +54,44 @@
   outline: none;                               /* Remove default outline */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* Drop shadow */
   z-index: 10;
+}
+/* Container for textbox and submit button */
+.textbox-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Submit button styling */
+.textbox-submit-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 15;
+}
+
+/* Submit button hover effect */
+.textbox-submit-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Submit button active/pressed effect */
+.textbox-submit-btn:active {
+  transform: scale(0.95);
 }
 
 /* Placeholder text styling */
@@ -72,6 +112,7 @@
   height: 150px;
   font-size: 14px;
   padding: 12px;
+  padding-right: 45px;
 }
 
 /* Medium textbox size (default) */
@@ -80,6 +121,7 @@
   height: 200px;
   font-size: 16px;
   padding: 15px;
+  padding-right: 45px;
 }
 
 /* Large textbox size */
@@ -88,5 +130,6 @@
   height: 300px;
   font-size: 18px;
   padding: 20px;
+  padding-right: 45px;
 }
 

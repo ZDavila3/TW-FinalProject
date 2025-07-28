@@ -21,7 +21,7 @@ const Dashboard = () => {
     return 'textbox-medium';
   };
 
-  // Function to convert position object to CSS styles
+  // Function to get the position styles for textboxes
   const getTextboxPosition = (position) => {
     return {
       position: 'absolute',
@@ -31,6 +31,12 @@ const Dashboard = () => {
       bottom: position.bottom,
       transform: position.transform || 'none'
     };
+  };
+
+  // Function to handle text submission
+  const handleSubmit = (textboxId, textValue) => {
+    console.log(`Submitting text from ${textboxId}:`, textValue);
+    // Add your submission logic here
   };
 
   return (
@@ -44,16 +50,32 @@ const Dashboard = () => {
       
       {/* Render all textboxes from config */}
       {dashboardConfig.textboxes.map((textbox) => (
-        <textarea
+        <div 
           key={textbox.id}
-          id={textbox.id}
-          className={`textbox-base ${getTextboxSizeClass(textbox.size)}`}
+          className="textbox-container"
           style={getTextboxPosition(textbox.position)}
-          placeholder={textbox.placeholder}
-          rows={textbox.rows}
-          cols={textbox.cols}
-          defaultValue={textbox.initialValue}
-        />
+        >
+          <textarea
+            id={textbox.id}
+            className={`textbox-base ${getTextboxSizeClass(textbox.size)}`}
+            placeholder={textbox.placeholder}
+            rows={textbox.rows}
+            cols={textbox.cols}
+            defaultValue={textbox.initialValue}
+          />
+          <button
+            className="textbox-submit-btn"
+            onClick={() => {
+              const textarea = document.getElementById(textbox.id);
+              handleSubmit(textbox.id, textarea.value);
+            }}
+            title="Submit text"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
       ))}
       
   
