@@ -22,7 +22,7 @@ export const dashboardConfig = {
     {
       id: "main-textbox",                        // Unique name for this textbox
       placeholder: "Enter your text here...",    // Placeholder text
-      position: { top: "20%", left: "25%" },     // Where to place the textbox
+      position: { top: "30%", left: "25%" },     // Where to place the textbox
       size: "medium",                           
       rows: 8,                                   // Number of rows (height)
       cols: 40,                                  // Number of columns (width)
@@ -34,7 +34,7 @@ export const dashboardConfig = {
   textElements: [
     {
       id: "welcome-text",
-      text: "Welcome to the Translation Dashboard",
+      text: "Welcome to the TOS Dumbifier!\nThis is a simple tool to help you understand the Terms of Service of any website.",
       position: { top: "10%", left: "50%" },
       style: {
         fontSize: "1.5rem",
@@ -45,7 +45,7 @@ export const dashboardConfig = {
     {
       id: "instruction-text", 
       text: "Please copy and paste the text you want to translate here. Or upload your file to translate.",
-      position: { top: "15%", left: "25%" },
+      position: { top: "20%", left: "25%" },
       style: {
         fontSize: "1rem"
       }
