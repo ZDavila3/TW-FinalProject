@@ -52,20 +52,3 @@ export const dashboardConfig = {
     }
   ]
 };
-
-
-/**
- * create a new textbox
- */
-export const createTextbox = (id, options = {}) => {
-  return {
-    id: id,
-    placeholder: options.placeholder || "Enter text...",
-    position: options.position || { top: "50%", left: "50%" },
-    size: options.size || "medium",
-    rows: options.rows || 6,
-    cols: options.cols || 30,
-    initialValue: options.initialValue || ""
-  };
-
-};

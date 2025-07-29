@@ -38,6 +38,7 @@ const Dashboard = () => {
     console.log(`Submitting text from ${textboxId}:`, textValue);
     // Add your submission logic here
   };
+  
 
   return (
     <div className={`dashboard ${isNavbarExpanded ? 'navbar-expanded' : ''}`}>
