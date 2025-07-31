@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import { dashboardConfig } from './dashboardConfig.js';
 import Navbar from './Navbar.jsx';
+import FileUploader from './FileUploader/FileUploader.tsx';
 
 /**
  * renders a dashboard with a title and textboxes
@@ -48,6 +49,11 @@ const Dashboard = () => {
       <h1 className="dashboard-title">
         {dashboardConfig.header.title}
       </h1>
+      
+      {/* File Uploader Component */}
+      <div className="file-uploader-container">
+        <FileUploader />
+      </div>
       
       {/* Render all textboxes from config */}
       {dashboardConfig.textboxes.map((textbox) => (

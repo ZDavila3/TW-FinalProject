@@ -22,7 +22,7 @@ export const dashboardConfig = {
     {
       id: "main-textbox",                        // Unique name for this textbox
       placeholder: "Enter your text here...",    // Placeholder text
-      position: { top: "30%", left: "25%" },     // Where to place the textbox
+      position: { top: "30%", left: "15%" },     // Adjusted to make room for file uploader
       size: "medium",                           
       rows: 8,                                   // Number of rows (height)
       cols: 40,                                  // Number of columns (width)
@@ -45,7 +45,7 @@ export const dashboardConfig = {
     {
       id: "instruction-text", 
       text: "Please copy and paste the text you want to translate here. Or upload your file to translate.",
-      position: { top: "20%", left: "25%" },
+      position: { top: "20%", left: "15%" },
       style: {
         fontSize: "1rem"
       }

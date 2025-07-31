@@ -133,3 +133,95 @@
   padding-right: 45px;
 }
 
+/* File uploader container styling */
+.file-uploader-container {
+  position: absolute;
+  top: 45%;
+  right: 10%;
+  width: 300px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: Arial, sans-serif;
+  z-index: 10;
+}
+
+/* Style the file input to match your theme */
+.file-uploader-container input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
+}
+
+.file-uploader-container input[type="file"]::file-selector-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.file-uploader-container input[type="file"]::file-selector-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Style the upload button */
+.file-uploader-container button {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: white;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-uploader-container button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Progress bar styling */
+.file-uploader-container .h-2\.5 {
+  height: 10px;
+}
+
+.file-uploader-container .bg-gray-200 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.file-uploader-container .bg-blue-500 {
+  background-color: rgba(59, 130, 246, 0.8);
+}
+
+/* Text styling within file uploader */
+.file-uploader-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.file-uploader-container .text-green-500 {
+  color: #10b981;
+}
+
+.file-uploader-container .text-red-500 {
+  color: #ef4444;
+}
+
+.file-uploader-container .text-gray-500 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
