@@ -7,11 +7,7 @@ sidebar_position: 1
 # Project Abstract
 Understanding legal documents can be challenging due to the complexity of legal jargon and technical terminology. This project aims to develop an interactive web application that simplifies legal language, making it more accessible and understandable to the general public. The platform will allow users to upload or input legal documents, which will then be analyzed and translated into plain, easy-to-understand text.
 
-The solution integrates multiple technologies:
-
-Dictionary API to provide precise definitions of complex legal terms.
-
-AI-based Natural Language Processing (NLP) API to interpret, summarize, and simplify legal content without altering its meaning.
+The solution integrates multiple technologies: Dictionary API to provide precise definitions of complex legal terms. AI-based Natural Language Processing (NLP) API to interpret, summarize, and simplify legal content without altering its meaning.
 
 Interactive Highlighting to allow users to select and focus on specific sections or terms for deeper clarification.
 
