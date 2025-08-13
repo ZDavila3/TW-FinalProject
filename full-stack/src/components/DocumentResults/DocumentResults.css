@@ -23,6 +23,7 @@
   max-width: 90vw;
   max-height: 90vh;
   width: 900px;
+  height: 80vh; /* Set a specific height to enable proper scrolling */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -147,6 +148,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-height: 0; /* Ensure flex child can shrink */
 }
 
 .tab-content {
@@ -155,6 +157,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  min-height: 0; /* Ensure flex child can shrink */
 }
 
 .content-header {
@@ -197,19 +200,62 @@
   line-height: 1.6;
   overflow-y: auto;
   backdrop-filter: blur(5px);
+  min-height: 200px; /* Minimum height to ensure content is visible */
+  max-height: 400px; /* Maximum height before scrolling kicks in */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+/* Add a subtle gradient at the bottom to indicate more content */
+.simplified-content::after,
+.original-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+  pointer-events: none;
+  border-radius: 0 0 10px 10px;
 }
 
 .simplified-content {
   font-size: 1rem;
 }
 
+/* Enhanced scrollbar styling for better visibility */
+.simplified-content::-webkit-scrollbar,
+.original-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.simplified-content::-webkit-scrollbar-track,
+.original-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.simplified-content::-webkit-scrollbar-thumb,
+.original-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.simplified-content::-webkit-scrollbar-thumb:hover,
+.original-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 .original-content pre {
   white-space: pre-wrap;
   word-wrap: break-word;
+  word-break: break-word; /* Handle very long words */
   margin: 0;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
   line-height: 1.5;
+  overflow-wrap: break-word; /* Additional word breaking support */
 }
 
 .stats-grid {
