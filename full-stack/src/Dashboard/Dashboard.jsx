@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { dashboardConfig } from './dashboardConfig.js';
 import Navbar from './Navbar.jsx';
 import FileUploader from './FileUploader/FileUploader.tsx';
+import { useAuth } from '../context/AuthContext.jsx';
 
 /**
  * renders a dashboard with a title and textboxes
@@ -10,6 +11,15 @@ import FileUploader from './FileUploader/FileUploader.tsx';
  */
 const Dashboard = () => {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
   
   // Function to get the right CSS class for textbox size
   const getTextboxSizeClass = (size) => {

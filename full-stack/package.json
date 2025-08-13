@@ -9,7 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "setup": "echo 'Please copy .env.example to .env and add your OpenAI API key'",
-    "check-config": "node -e \"console.log('Configuration check not implemented yet')\""
+    "check-config": "node -e \"console.log('Configuration check not implemented yet')\"",
+    "server": "node server/server.js",
+    "server:dev": "nodemon server/server.js",
+    "start": "concurrently \"npm run server:dev\" \"npm run dev\"",
+    "install-dev": "npm install nodemon concurrently --save-dev",
+    "test-atlas": "node test-atlas.js"
   },
   "dependencies": {
     "@types/axios": "^0.9.36",
