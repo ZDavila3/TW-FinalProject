@@ -202,8 +202,11 @@
   backdrop-filter: blur(5px);
   min-height: 200px; /* Minimum height to ensure content is visible */
   max-height: 400px; /* Maximum height before scrolling kicks in */
+  max-width: 800px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
+  position: fixed;
+  bottom: 200px;
+  left: 60px;
 }
 
 /* Add a subtle gradient at the bottom to indicate more content */
