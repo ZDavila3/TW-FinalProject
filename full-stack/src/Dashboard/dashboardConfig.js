@@ -21,7 +21,7 @@ export const dashboardConfig = {
   textboxes: [
     {
       id: "main-textbox",                        // Unique name for this textbox
-      placeholder: "Enter your text here...",    // Placeholder text
+      placeholder: "Paste your Terms of Service, Privacy Policy, or any legal text here for AI analysis...",    // Updated placeholder
       position: { top: "30%", left: "15%" },     // Adjusted to make room for file uploader
       size: "large",                           
       rows: 8,                                   // Number of rows (height)
@@ -44,10 +44,11 @@ export const dashboardConfig = {
     },
     {
       id: "instruction-text", 
-      text: "Please copy and paste the text you want to translate here. Or upload your file to translate.",
+      text: "📝 Copy & Paste: Paste any legal text into the textbox below and click the ➤ button for AI analysis.\n📁 File Upload: Or use the file uploader on the right to analyze document files.",
       position: { top: "20%", left: "15%" },
       style: {
-        fontSize: "1rem"
+        fontSize: "1rem",
+        lineHeight: "1.5"
       }
     }
   ]

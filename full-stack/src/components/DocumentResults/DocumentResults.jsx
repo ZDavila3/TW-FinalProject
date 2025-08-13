@@ -24,7 +24,20 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
     );
   }
 
-  const { analysis, documentType, file } = result;
+  // Handle both old and new data structures
+  const analysis = result.analysis || {
+    simplified: result.processedText,
+    original: result.originalText,
+    wordCount: {
+      original: result.originalText ? result.originalText.split(/\s+/).length : 0,
+      simplified: result.processedText ? result.processedText.split(/\s+/).length : 0
+    },
+    model: 'GPT-4',
+    timestamp: result.processedAt || new Date().toISOString()
+  };
+  
+  const { documentType, filename } = result;
+  const file = result.file || { name: filename || 'Pasted Text' };
 
   const handleSave = () => {
     if (onSaveToHistory) {
@@ -91,7 +104,7 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
             <div className="content-header">
               <h3>AI-Simplified Analysis</h3>
               <button 
-                onClick={() => handleCopyToClipboard(analysis.simplified)}
+                onClick={() => handleCopyToClipboard(analysis.simplified || 'No processed text available')}
                 className="copy-btn"
               >
                 Copy to Clipboard
@@ -99,7 +112,7 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
             </div>
             <div className="simplified-content">
               <div dangerouslySetInnerHTML={{ 
-                __html: analysis.simplified.replace(/\n/g, '<br>') 
+                __html: (analysis.simplified || 'No processed text available').replace(/\n/g, '<br>') 
               }} />
             </div>
           </div>
@@ -110,14 +123,14 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
             <div className="content-header">
               <h3>Original Document Text</h3>
               <button 
-                onClick={() => handleCopyToClipboard(analysis.original)}
+                onClick={() => handleCopyToClipboard(analysis.original || 'No original text available')}
                 className="copy-btn"
               >
                 Copy to Clipboard
               </button>
             </div>
             <div className="original-content">
-              <pre>{analysis.original}</pre>
+              <pre>{analysis.original || 'No original text available'}</pre>
             </div>
           </div>
         )}
@@ -128,19 +141,19 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
             <div className="stats-grid">
               <div className="stat-item">
                 <label>Original Word Count:</label>
-                <span>{analysis.wordCount.original.toLocaleString()}</span>
+                <span>{(analysis.wordCount?.original || 0).toLocaleString()}</span>
               </div>
               <div className="stat-item">
                 <label>Simplified Word Count:</label>
-                <span>{analysis.wordCount.simplified.toLocaleString()}</span>
+                <span>{(analysis.wordCount?.simplified || 0).toLocaleString()}</span>
               </div>
               <div className="stat-item">
                 <label>Reduction Percentage:</label>
                 <span>
-                  {Math.round(
+                  {analysis.wordCount?.original > 0 ? Math.round(
                     ((analysis.wordCount.original - analysis.wordCount.simplified) / 
                     analysis.wordCount.original) * 100
-                  )}%
+                  ) : 0}%
                 </span>
               </div>
               <div className="stat-item">
@@ -149,11 +162,11 @@ const DocumentResults = ({ result, onClose, onSaveToHistory }) => {
               </div>
               <div className="stat-item">
                 <label>AI Model Used:</label>
-                <span>{analysis.model}</span>
+                <span>{analysis.model || 'GPT-4'}</span>
               </div>
               <div className="stat-item">
                 <label>Processed At:</label>
-                <span>{new Date(analysis.timestamp).toLocaleString()}</span>
+                <span>{new Date(analysis.timestamp || new Date()).toLocaleString()}</span>
               </div>
               {file && (
                 <>
