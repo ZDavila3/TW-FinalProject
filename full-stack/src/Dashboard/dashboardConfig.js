@@ -23,7 +23,7 @@ export const dashboardConfig = {
       id: "main-textbox",                        // Unique name for this textbox
       placeholder: "Enter your text here...",    // Placeholder text
       position: { top: "30%", left: "15%" },     // Adjusted to make room for file uploader
-      size: "medium",                           
+      size: "large",                           
       rows: 8,                                   // Number of rows (height)
       cols: 40,                                  // Number of columns (width)
       initialValue: "",                          // Starting text (empty by default)

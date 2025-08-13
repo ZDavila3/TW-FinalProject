@@ -106,27 +106,10 @@
   transform: translateY(-2px);                /* Slight lift effect */
 }
 
-/* Small textbox size */
-.textbox-small {
-  width: 250px;
-  height: 150px;
-  font-size: 14px;
-  padding: 12px;
-  padding-right: 45px;
-}
-
-/* Medium textbox size (default) */
-.textbox-medium {
-  width: 300px;
-  height: 200px;
-  font-size: 16px;
-  padding: 15px;
-  padding-right: 45px;
-}
 
 /* Large textbox size */
 .textbox-large {
-  width: 400px;
+  width: 600px;
   height: 300px;
   font-size: 18px;
   padding: 20px;
@@ -136,82 +119,236 @@
 /* File uploader container styling */
 .file-uploader-container {
   position: absolute;
-  top: 45%;
-  left: 45%;
-  width: 300px;
-  padding: 20px;
+  top: 30%;
+  left: 55%;
+  width: 600px;
+  height: 300px;
+  padding: 25px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   color: white;
   font-family: Arial, sans-serif;
   z-index: 10;
 }
 
+/* File input section */
+.file-input-section {
+  margin-bottom: 20px;
+}
+
+.file-help-text {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
 /* Style the file input to match your theme */
 .file-uploader-container input[type="file"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   color: white;
   font-family: Arial, sans-serif;
-  margin-bottom: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.file-uploader-container input[type="file"]:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.file-uploader-container input[type="file"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .file-uploader-container input[type="file"]::file-selector-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(59, 130, 246, 0.3);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  padding: 5px 10px;
-  margin-right: 10px;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-right: 12px;
   cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
 .file-uploader-container input[type="file"]::file-selector-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(59, 130, 246, 0.5);
+  transform: translateY(-1px);
 }
 
-/* Style the upload button */
-.file-uploader-container button {
+/* File info section */
+.file-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.file-info h4 {
+  margin: 0 0 10px 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-info p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Process section */
+.process-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.process-btn {
   width: 100%;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
+  padding: 15px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 8px;
   color: white;
   font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.process-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.process-help-text {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+/* Processing section */
+.processing-section {
+  margin: 20px 0;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.progress-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  min-width: 45px;
+}
+
+.progress-message {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Success section */
+.success-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.success-message {
+  margin: 0 0 15px 0;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.view-results-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.file-uploader-container button:hover {
+.view-results-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Error section */
+.error-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.error-message {
+  margin: 0 0 15px 0;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 14px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.retry-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
 }
 
-/* Progress bar styling */
-.file-uploader-container .h-2\.5 {
-  height: 10px;
-}
-
-.file-uploader-container .bg-gray-200 {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-.file-uploader-container .bg-blue-500 {
-  background-color: rgba(59, 130, 246, 0.8);
-}
-
-/* Text styling within file uploader */
-.file-uploader-container p {
-  margin: 5px 0;
-  font-size: 14px;
-}
+/* Legacy styles - keeping for compatibility */
 
 .file-uploader-container .text-green-500 {
   color: #10b981;
