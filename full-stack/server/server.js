@@ -34,6 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 
+const savedWordsRouter = require('./routes/savedWords');
+app.use('/api/saved-words', savedWordsRouter);
 // Health check route
 app.get('/api/health', (req, res) => {
   res.json({ 
