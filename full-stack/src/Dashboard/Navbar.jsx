@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 /**
@@ -8,6 +9,7 @@ import './Navbar.css';
  */
 const Navbar = ({ onToggle }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     const newExpandedState = !isExpanded;
@@ -66,14 +68,34 @@ const Navbar = ({ onToggle }) => {
       <ul className="navbar-items">
         {navItems.map((item) => (
           <li key={item.id} className={`navbar-item ${item.active ? 'active' : ''}`}>
-            <a href="#" className="navbar-link" onClick={(e) => e.preventDefault()}>
-              <img 
-                src={item.icon} 
-                alt={item.label}
-                className="navbar-icon"
-              />
-              <span className="navbar-label">{item.label}</span>
-            </a>
+            {item.id === 'help' ? (
+              <Link to="/help" className="navbar-link">
+                <img 
+                  src={item.icon} 
+                  alt={item.label}
+                  className="navbar-icon"
+                />
+                <span className="navbar-label">{item.label}</span>
+              </Link>
+            ) : item.id === 'dashboard' ? (
+              <Link to="/dashboard" className="navbar-link">
+                <img 
+                  src={item.icon} 
+                  alt={item.label}
+                  className="navbar-icon"
+                />
+                <span className="navbar-label">{item.label}</span>
+              </Link>
+            ) : (
+              <a href="#" className="navbar-link" onClick={(e) => e.preventDefault()}>
+                <img 
+                  src={item.icon} 
+                  alt={item.label}
+                  className="navbar-icon"
+                />
+                <span className="navbar-label">{item.label}</span>
+              </a>
+            )}
           </li>
         ))}
       </ul>
