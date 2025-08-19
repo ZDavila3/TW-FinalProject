@@ -1,0 +1,92 @@
+.dictionary-page-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.dictionary-page-container {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.07);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 32px 24px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+.dictionary-page-container h1 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+.dictionary-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dictionary-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+.dictionary-search-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: #667eea;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.dictionary-search-btn:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+.dictionary-error {
+  color: #ff6b6b;
+  margin-bottom: 12px;
+}
+.dictionary-result {
+  background: rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 10px;
+}
+.dictionary-result h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.dictionary-result p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+.dictionary-section {
+  margin-bottom: 18px;
+}
+.dictionary-section strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #a5b4fc;
+  font-size: 1.05rem;
+}
+.dictionary-section ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #e0e0e0;
+}
+.dictionary-section li {
+  margin-bottom: 4px;
+}

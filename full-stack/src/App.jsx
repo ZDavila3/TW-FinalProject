@@ -2,7 +2,11 @@ import React from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Dashboard from './Dashboard/Dashboard';
 import AuthForm from './components/AuthForm';
+import HelpPage from './Help_Page/HelpPage';
+import Navbar from './Dashboard/Navbar';
+import DictionaryPage from './Dictionary/DictionaryPage';
 import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Error boundary for better error handling
 class ErrorBoundary extends React.Component {
@@ -40,7 +44,7 @@ class ErrorBoundary extends React.Component {
 
 // Main app component that handles routing based on auth state
 const AppContent = () => {
-  const { isAuthenticated, isLoading, user } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
 
   // Show loading spinner while checking auth status
   if (isLoading) {
@@ -55,7 +59,43 @@ const AppContent = () => {
   }
 
   // Show appropriate component based on authentication status
-  return isAuthenticated ? <Dashboard /> : <AuthForm />;
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={isAuthenticated ? <Navigate to="/dashboard" /> : <AuthForm />}
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <>
+            <Navbar />
+            <Dashboard />
+          </>
+        }
+      />
+      <Route
+        path="/help"
+        element={
+          <>
+            <Navbar />
+            <HelpPage />
+          </>
+        }
+      />
+      <Route
+        path="/dictionary"
+        element={
+          <>
+            <Navbar />
+            <DictionaryPage />
+          </>
+        }
+      />
+      {/* Fallback route */}
+      <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />} />
+    </Routes>
+  );
 };
 
 function App() {
