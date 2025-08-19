@@ -88,6 +88,15 @@ const Navbar = ({ onToggle }) => {
                 />
                 <span className="navbar-label">{item.label}</span>
               </Link>
+            ) : item.id === 'dictionary' ? (
+              <Link to="/dictionary" className="navbar-link">
+                <img 
+                  src={item.icon} 
+                  alt={item.label}
+                  className="navbar-icon"
+                />
+                <span className="navbar-label">{item.label}</span>
+              </Link>
             ) : item.id === 'logout' ? (
               <a href="#" className="navbar-link" onClick={async (e) => {
                 e.preventDefault();

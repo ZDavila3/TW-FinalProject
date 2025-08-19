@@ -4,6 +4,7 @@ import Dashboard from './Dashboard/Dashboard';
 import AuthForm from './components/AuthForm';
 import HelpPage from './Help_Page/HelpPage';
 import Navbar from './Dashboard/Navbar';
+import DictionaryPage from './Dictionary/DictionaryPage';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -79,6 +80,15 @@ const AppContent = () => {
           <>
             <Navbar />
             <HelpPage />
+          </>
+        }
+      />
+      <Route
+        path="/dictionary"
+        element={
+          <>
+            <Navbar />
+            <DictionaryPage />
           </>
         }
       />
