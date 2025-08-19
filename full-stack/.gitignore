@@ -12,8 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Environment variables (contains API keys)
-.env
 
 # Editor directories and files
 .vscode/*
