@@ -4,8 +4,8 @@
  * Defines the user schema with authentication fields and document history
  */
 
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -126,4 +126,4 @@ userSchema.statics.findByEmail = function(email) {
 
 const User = mongoose.model('User', userSchema);
 
-export default User;
+module.exports = User;

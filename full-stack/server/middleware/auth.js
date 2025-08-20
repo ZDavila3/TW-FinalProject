@@ -4,11 +4,11 @@
  * Handles JWT token verification and user authentication
  */
 
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 // Middleware to verify JWT token
-export const authenticateToken = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
   try {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
@@ -61,7 +61,7 @@ export const authenticateToken = async (req, res, next) => {
 };
 
 // Middleware to check if user is optional (for routes that work with or without auth)
-export const optionalAuth = async (req, res, next) => {
+const optionalAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -80,7 +80,7 @@ export const optionalAuth = async (req, res, next) => {
 };
 
 // Generate JWT token
-export const generateToken = (userId) => {
+const generateToken = (userId) => {
   return jwt.sign(
     { userId }, 
     process.env.JWT_SECRET || 'your-secret-key',
@@ -89,10 +89,17 @@ export const generateToken = (userId) => {
 };
 
 // Generate refresh token
-export const generateRefreshToken = (userId) => {
+const generateRefreshToken = (userId) => {
   return jwt.sign(
     { userId }, 
     process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key',
     { expiresIn: '30d' }
   );
+};
+
+module.exports = {
+  authenticate,
+  optionalAuth,
+  generateToken,
+  generateRefreshToken,
 };

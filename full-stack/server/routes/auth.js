@@ -4,10 +4,10 @@
  * Handles user registration, login, and token management
  */
 
-import express from 'express';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import { generateToken, generateRefreshToken, authenticateToken } from '../middleware/auth.js';
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const { generateToken, generateRefreshToken, authenticate } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -161,7 +161,7 @@ router.post('/login', async (req, res) => {
 // @route   GET /api/auth/me
 // @desc    Get current user profile
 // @access  Private
-router.get('/me', authenticateToken, async (req, res) => {
+router.get('/me', authenticate, async (req, res) => {
   try {
     res.json({
       user: {
@@ -186,7 +186,7 @@ router.get('/me', authenticateToken, async (req, res) => {
 // @route   POST /api/auth/logout
 // @desc    Logout user (client-side token removal)
 // @access  Private
-router.post('/logout', authenticateToken, async (req, res) => {
+router.post('/logout', authenticate, async (req, res) => {
   try {
     // In a more complex setup, you might want to blacklist the token
     // For now, we'll just send a success response
@@ -235,4 +235,4 @@ router.post('/refresh', async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

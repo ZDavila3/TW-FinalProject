@@ -4,16 +4,16 @@
  * Handles user profile management and document history
  */
 
-import express from 'express';
-import User from '../models/User.js';
-import { authenticateToken } from '../middleware/auth.js';
+const express = require('express');
+const User = require('../models/User');
+const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
 
 // @route   PUT /api/user/profile
 // @desc    Update user profile
 // @access  Private
-router.put('/profile', authenticateToken, async (req, res) => {
+router.put('/profile', authenticate, async (req, res) => {
   try {
     const { name, preferences } = req.body;
     const user = req.user;
@@ -51,7 +51,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
 // @route   POST /api/user/document-history
 // @desc    Add document to user's history
 // @access  Private
-router.post('/document-history', authenticateToken, async (req, res) => {
+router.post('/document-history', authenticate, async (req, res) => {
   try {
     const {
       filename,
@@ -95,7 +95,7 @@ router.post('/document-history', authenticateToken, async (req, res) => {
 // @route   GET /api/user/document-history
 // @desc    Get user's document history
 // @access  Private
-router.get('/document-history', authenticateToken, async (req, res) => {
+router.get('/document-history', authenticate, async (req, res) => {
   try {
     const user = req.user;
     const { limit = 20, offset = 0 } = req.query;
@@ -124,7 +124,7 @@ router.get('/document-history', authenticateToken, async (req, res) => {
 // @route   DELETE /api/user/document-history/:documentId
 // @desc    Delete specific document from history
 // @access  Private
-router.delete('/document-history/:documentId', authenticateToken, async (req, res) => {
+router.delete('/document-history/:documentId', authenticate, async (req, res) => {
   try {
     const user = req.user;
     const { documentId } = req.params;
@@ -152,7 +152,7 @@ router.delete('/document-history/:documentId', authenticateToken, async (req, re
 // @route   DELETE /api/user/document-history
 // @desc    Clear all document history
 // @access  Private
-router.delete('/document-history', authenticateToken, async (req, res) => {
+router.delete('/document-history', authenticate, async (req, res) => {
   try {
     const user = req.user;
     
@@ -172,4 +172,4 @@ router.delete('/document-history', authenticateToken, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
