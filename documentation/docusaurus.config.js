@@ -27,20 +27,21 @@ const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((wo
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   /*TODO: Change to your project's title and tagline*/
-  title: 'Techwise',
-  tagline: 'TechwiseProject',
+  title: 'TOS Dumbifier',
+  tagline: 'Techwise Capstone',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
-  url: 'https://'+process.env.ORG_NAME+'.github.io/',
-  baseUrl: '/'+process.env.PROJECT_NAME+'/',
+  url: 'https://github.com',
+  baseUrl: '/full-stack/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  deploymentBranch: 'gh-pages',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: process.env.ORG_NAME, // Usually your GitHub org/user name.
-  projectName: process.env.PROJECT_NAME, // Usually your repo name.
+  organizationName:'Techwise', // Usually your GitHub org/user name.
+  projectName: 'TOS Dumbifier', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
