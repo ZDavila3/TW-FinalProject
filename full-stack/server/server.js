@@ -4,12 +4,12 @@
  * This server handles authentication, user management, and document processing
  */
 
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 // Load environment variables
 dotenv.config();
@@ -95,4 +95,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-export default app;
+module.exports = app;
