@@ -7,9 +7,6 @@ sidebar_position: 1
 ## Front End Class Diagram
 ![ClassDiagram](ClassDiagram.png))
 
-
-
-
 # Backend
 # Entity Relationship (ER) Diagram
 ![ER_Diagram](ER.png))
