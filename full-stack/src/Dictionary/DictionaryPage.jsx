@@ -190,11 +190,7 @@ const DictionaryPage = () => {
               )}
             </div>
           )}
-          {(!result && !loading && !error && word) && (
-            <div className="dictionary-result">
-              <p>No definition found for "{word}".</p>
-            </div>
-          )}
+
         </div>
       </div>
     </div>
