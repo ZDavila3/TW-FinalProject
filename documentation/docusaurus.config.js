@@ -20,18 +20,20 @@ const main_template_jira_scripts = () => {
 }
 
 // You can change the title here. The default is the name of the repository.
-const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
-  return word[0].toUpperCase() + word.substring(1);
-}).join(' ');
-
+const projectName = 'TW-FinalProject';
+const orgName = 'ZDavila3';
+const title = projectName.replaceAll('-', ' ')
+  .split(' ')
+  .map((word) => word[0].toUpperCase() + word.substring(1))
+  .join(' ');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  /*TODO: Change to your project's title and tagline*/
-  title: 'TOS Dumbifier',
+  title: title,
   tagline: 'Techwise Capstone',
-  /*Unless you move this website to a seperate repo don't change url and baseurl.*/
-  url: 'https://github.com',
-  baseUrl: '/full-stack/',
+  url: 'https://ZDavila3.github.io',
+  baseUrl: '/TW-FinalProject/',
+  organizationName: orgName,
+  projectName: projectName,
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -40,8 +42,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName:'Techwise', // Usually your GitHub org/user name.
-  projectName: 'TOS Dumbifier', // Usually your repo name.
+  // organizationName:'ZDavila3', // Usually your GitHub org/user name.
+  // projectName: 'TW-FinalProject', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -67,7 +69,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME+'/edit/main/documentation/',
+            'https://github.com/ZDavila3/TW-FinalProject/edit/main/documentation/',
           // remarkPlugins: [require('mdx-mermaid')],
 
         },
@@ -126,7 +128,7 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
-            href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+            href: 'https://github.com/ZDavila3/TW-FinalProject',
             label: 'GitHub',
             position: 'right',
           },
@@ -169,7 +171,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+                href: 'https://github.com/ZDavila3/TW-FinalProject',
               },
             ],
           },
