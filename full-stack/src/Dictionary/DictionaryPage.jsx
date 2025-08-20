@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
-// ...existing code...
+import { useAuth } from '../context/AuthContext';
 import './DictionaryPage.css';
 
 const API_URL = 'https://api.api-ninjas.com/v1/dictionary?word=';
 const API_KEY = 'VAlLcSG5dIG3YYUETn9yRA==bAuoY2TrOn34HkCL'; // API Ninjas key
 
 const DictionaryPage = () => {
+  // Safe auth context usage with fallback
+  let authContext;
+  let isAuthenticated = false;
+  let token = null;
+  
+  try {
+    authContext = useAuth();
+    isAuthenticated = authContext?.isAuthenticated || false;
+    token = authContext?.token || null;
+  } catch (error) {
+    console.warn('Auth context not available:', error.message);
+  }
+  
   const [word, setWord] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,38 +28,46 @@ const DictionaryPage = () => {
   // Fetch saved words from backend on mount
   useEffect(() => {
     const fetchSavedWords = async () => {
+      if (!isAuthenticated || !token) return;
       try {
         const res = await fetch('/api/saved-words', {
-          credentials: 'include', // send cookies for auth
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
         });
         if (!res.ok) throw new Error('Failed to fetch saved words');
         const data = await res.json();
         // data is array of { word }
         setSavedWords(data.map(item => item.word));
       } catch (err) {
-        // fallback: do nothing or show error
+        console.error('Failed to fetch saved words:', err);
       }
     };
     fetchSavedWords();
-  }, []);
+  }, [isAuthenticated, token]);
   // Save current word to backend and sidebar
   const handleSaveWord = async () => {
     const trimmed = word.trim();
     if (!trimmed) return;
     if (savedWords.includes(trimmed)) return;
+    if (!isAuthenticated || !token) {
+      alert('Please log in to save words');
+      return;
+    }
     try {
       const res = await fetch('/api/saved-words', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include',
         body: JSON.stringify({ word: trimmed }),
       });
       if (!res.ok) throw new Error('Failed to save word');
       setSavedWords([trimmed, ...savedWords]);
     } catch (err) {
-      // Optionally show error
+      console.error('Failed to save word:', err);
+      alert('Failed to save word. Please try again.');
     }
   };
 
