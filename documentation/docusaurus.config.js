@@ -19,8 +19,11 @@ const main_template_jira_scripts = () => {
   }
 }
 
+const ORG_NAME = process.env.ORG_NAME || 'default-org';
+const PROJECT_NAME = process.env.PROJECT_NAME || 'default-project'
+
 // You can change the title here. The default is the name of the repository.
-const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
+const title = ''+PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
   return word[0].toUpperCase() + word.substring(1);
 }).join(' ');
 
@@ -30,8 +33,8 @@ const config = {
   title: 'Techwise',
   tagline: 'TechwiseProject',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
-  url: 'https://'+process.env.ORG_NAME+'.github.io/',
-  baseUrl: '/'+process.env.PROJECT_NAME+'/',
+  url: 'https://' + ORG_NAME + '.github.io/',
+  baseUrl: '/' + PROJECT_NAME + '/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -39,8 +42,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: process.env.ORG_NAME, // Usually your GitHub org/user name.
-  projectName: process.env.PROJECT_NAME, // Usually your repo name.
+  organizationName: ORG_NAME, // Usually your GitHub org/user name.
+  projectName: PROJECT_NAME, // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -66,7 +69,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME+'/edit/main/documentation/',
+            'https://github.com/'+ORG_NAME+'/'+PROJECT_NAME+'/edit/main/documentation/',
           // remarkPlugins: [require('mdx-mermaid')],
 
         },
@@ -125,7 +128,7 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
-            href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+            href: 'https://github.com/' + ORG_NAME + '/' + PROJECT_NAME,
             label: 'GitHub',
             position: 'right',
           },
@@ -146,29 +149,12 @@ const config = {
               },
             ],
           },
-          // {
-          //   title: 'Community',
-          //   items: [
-          //     {
-          //       label: 'Stack Overflow',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-          //     },
-          //     {
-          //       label: 'Discord',
-          //       href: 'https://discordapp.com/invite/docusaurus',
-          //     },
-          //     {
-          //       label: 'Twitter',
-          //       href: 'https://twitter.com/docusaurus',
-          //     },
-          //   ],
-          // },
           {
             title: 'More',
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+                href: 'https://github.com/' + ORG_NAME + '/' + PROJECT_NAME,
               },
             ],
           },
