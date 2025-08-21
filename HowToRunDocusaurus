@@ -2,3 +2,7 @@
 2. npm install
 3. yarn
 4. PROJECT_NAME=this_name_doesnt_matter yarn start
+
+
+
+1. GIT_USER=ZDavila3 npm yarn deploy
