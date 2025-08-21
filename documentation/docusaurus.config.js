@@ -19,10 +19,9 @@ const main_template_jira_scripts = () => {
   }
 }
 
-const ORG_NAME = process.env.ORG_NAME || 'default-org';
-const PROJECT_NAME = process.env.PROJECT_NAME || 'default-project'
+const ORG_NAME = 'ZDavila3';
+const PROJECT_NAME = 'TW-FinalProject';
 
-// You can change the title here. The default is the name of the repository.
 const title = ''+PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
   return word[0].toUpperCase() + word.substring(1);
 }).join(' ');
@@ -31,9 +30,9 @@ const title = ''+PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: 'Techwise',
-  tagline: 'TechwiseProject',
+  tagline: 'TechwiseProject', 
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
-  url: 'https://' + ORG_NAME + '.github.io/',
+  url: 'https://' + ORG_NAME + '.github.io',
   baseUrl: '/' + PROJECT_NAME + '/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
