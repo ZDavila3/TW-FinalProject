@@ -2,7 +2,7 @@
 
 # TechWise Final Project
 
-`Full Stack (React/Vite, Mongo DB, Docker, Tailwind)`
+`Full Stack (React/Vite, Mongo DB, Tailwind)`
 
 Welcome to our TechWise 2025 final project called ToS Simplifyer where we go back to basic so you never have to.
 
