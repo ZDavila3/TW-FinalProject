@@ -1,6 +1,6 @@
 <img width="957" height="246" alt="Image" src="https://github.com/user-attachments/assets/28de3cf4-df6f-4cb9-af3b-77d95de38872" />
 
-#TechWise Final Project
+# TechWise Final Project
 
 `Full Stack (React/Vite, Mongo DB, Docker, Tailwind)`
 
