@@ -1,6 +1,6 @@
 
 Welcome to our TechWise 2025 final project called TOS Simplifyer where we dive into the world of API's, Deployment, and JS.
-
+`Full Stack (React/Vite, Mongo DB, Docker, Tailwind)`
 ![Static Badge](https://img.shields.io/badge/Made_with-Love%3C3-pink)
 
 
