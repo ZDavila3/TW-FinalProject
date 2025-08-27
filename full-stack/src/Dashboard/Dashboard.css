@@ -1,8 +1,9 @@
 /* ===== Dashboard layout ===== */
 .dashboard {
   min-height: 100vh;
-  padding: 32px 24px 48px 96px;      /* space for collapsed navbar */
+  padding: 32px 24px 48px 96px;
   transition: padding-left .25s ease;
+  background: linear-gradient(135deg, #475697 0%, #764ba2 100%);
 }
 .dashboard.navbar-expanded { padding-left: 284px; }
 
@@ -99,7 +100,7 @@
 .results-panel [role="tablist"]{
   grid-row: 1 / 2;
   position: sticky; top: 0; z-index: 2;
-  background: linear-gradient(180deg, rgba(17,24,39,.88), rgba(17,24,39,.70)) !important;
+  background: linear-gradient(180deg, rgba(39, 17, 35, 0.88), rgba(17,24,39,.70)) !important;
   border: 0 !important;
   padding: 10px 14px;
   display: flex; gap: 12px; align-items: center;
@@ -210,7 +211,7 @@
 .results-panel [role="tablist"]{
   position: relative;        /* instead of sticky for now */
   z-index: 3;                /* always above the panel body */
-  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+  border-bottom: 1px solid rgba(240, 97, 97, 0.952) !important;
   margin: 0 0 8px 0;         /* space below header */
 }
 
@@ -295,9 +296,9 @@
   height: 100%; max-height: 62vh; overflow: auto;
   padding: 16px; border-radius: 12px;
   background:
-    radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.18), transparent 60%),
-    radial-gradient(800px 500px at 90% 20%, rgba(99,102,241,.16), transparent 60%),
-    linear-gradient(180deg, rgba(17,24,39,.55), rgba(17,24,39,.45));
+    radial-gradient(1200px 600px at 10% 10%, rgba(89, 7, 231, 0.973), transparent 60%),
+    radial-gradient(800px 500px at 90% 20%, rgb(219, 219, 219), transparent 60%),
+    linear-gradient(180deg, rgb(236, 236, 236), rgba(17,24,39,.45));
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
@@ -309,4 +310,5 @@
 /* small utilities */
 .cr-stats { color:#e8eaff; display:grid; gap:6px; }
 .cr-error { color:#ffb4b4; }
+
 
