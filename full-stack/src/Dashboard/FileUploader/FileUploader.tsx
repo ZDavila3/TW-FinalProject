@@ -1,159 +1,214 @@
-import { ChangeEvent, useState } from 'react';
-import { documentProcessor } from '../../services/documentProcessor.js';
-import DocumentResults from '../../components/DocumentResults/DocumentResults.jsx';
+import { useRef, useState } from "react";
+import { documentProcessor } from "../../services/documentProcessor.js";
+import CleanResults from "../../components/CleanResults/CleanResults.jsx";
+import { saveResultToLocal } from "../../services/saveResult";
 
 type ProcessingStatus = "idle" | "processing" | "success" | "error";
 
 interface ProcessingProgress {
-    step: string;
-    progress: number;
-    message: string;
+  step: string;
+  progress: number;
+  message: string;
 }
 
 export default function FileUploader() {
-    const [file, setFile] = useState<File | null>(null);
-    const [status, setStatus] = useState<ProcessingStatus>("idle");
-    const [progress, setProgress] = useState<number>(0);
-    const [progressMessage, setProgressMessage] = useState<string>("");
-    const [result, setResult] = useState<any>(null);
-    const [showResults, setShowResults] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [status, setStatus] = useState<ProcessingStatus>("idle");
+  const [progress, setProgress] = useState(0);
+  const [progressMessage, setProgressMessage] = useState("");
+  const [result, setResult] = useState<any>(null);
+  const [showResults, setShowResults] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-        if (e.target.files) {
-            setFile(e.target.files[0]);
-            setStatus("idle");
-            setResult(null);
-            setShowResults(false);
-            console.log('Selected file:', e.target.files[0]);
-        }
+  const resetUI = () => {
+    setStatus("idle");
+    setResult(null);
+    setShowResults(false);
+    setProgress(0);
+    setProgressMessage("");
+  };
+
+  const onProgress = (p: ProcessingProgress) => {
+    setProgress(p?.progress ?? 0);
+    setProgressMessage(p?.message ?? "");
+    if (p?.step === "error") setStatus("error");
+    if (p?.step === "complete") setStatus("success");
+  };
+
+  const pickFile = () => inputRef.current?.click();
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    setFile(f);
+    resetUI();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setDragOver(false);
+    const f = e.dataTransfer.files?.[0];
+    if (!f) return;
+    setFile(f);
+    resetUI();
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") pickFile();
+  };
+
+  const handleProcessDocument = async () => {
+    if (!file) return;
+    setStatus("processing");
+    setProgress(0);
+    setProgressMessage("Starting document processing…");
+
+    try {
+      const res = await documentProcessor.processDocument(file, onProgress);
+      setResult(res);
+      if (res?.success) {
+        setStatus("success");
+        setShowResults(true);
+        setProgressMessage("Document processing complete!");
+      } else {
+        setStatus("error");
+        setProgressMessage(res?.error || "Processing failed.");
+      }
+    } catch (err: any) {
+      setStatus("error");
+      setProgressMessage(err?.message || "Processing failed.");
     }
+  };
 
-    const handleProgressUpdate = (progressData: ProcessingProgress) => {
-        setProgress(progressData.progress);
-        setProgressMessage(progressData.message);
-        
-        if (progressData.step === 'error') {
-            setStatus("error");
-        } else if (progressData.step === 'complete') {
-            setStatus("success");
-        }
-    };
+  return (
+    <div className="uploader-card ui-card">
+      <div
+        className={`dropzone ${dragOver ? "dragover" : ""}`}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={handleDrop}
+        onClick={pickFile}
+        onKeyUp={handleKeyUp}
+        role="button"
+        tabIndex={0}
+        aria-label="Upload document (txt, pdf, doc, docx)"
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".txt,.pdf,.doc,.docx"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <div className="pill">📁 Drop file here or click to upload</div>
+          <small>Supported: .txt · .pdf · .doc · .docx</small>
+        </div>
+      </div>
 
-    async function handleProcessDocument() {
-        if (!file) return;
-
-        setStatus("processing");
-        setProgress(0);
-        setProgressMessage("Starting document processing...");
-
-        try {
-            const processingResult = await documentProcessor.processDocument(
-                file, 
-                handleProgressUpdate
-            );
-
-            setResult(processingResult);
-            
-            if (processingResult.success) {
-                setStatus("success");
-                setShowResults(true);
-            } else {
-                setStatus("error");
-            }
-        } catch (error) {
-            console.error("Document processing failed:", error);
-            setStatus("error");
-            setProgressMessage(error instanceof Error ? error.message : "Processing failed");
-        }
-    }
-
-    const handleCloseResults = () => {
-        setShowResults(false);
-        setResult(null);
-    };
-
-    const handleSaveToHistory = (result: any) => {
-        documentProcessor.saveToHistory(result);
-        // Could show a success message here
-        console.log('Saved to history');
-    };
-
-    return (
-        <>
-            <div className="space-y-2">
-                <div className="file-input-section">
-                    <input 
-                        type="file" 
-                        accept=".txt,.pdf,.doc,.docx" 
-                        onChange={handleFileChange}
-                        disabled={status === "processing"}
-                    />
-                    <p className="file-help-text">
-                        Upload a Terms of Service, Privacy Policy, or EULA document (.txt, .pdf, .doc, .docx)
-                    </p>
-                </div>
-
-                {file && (
-                    <div className="file-info">
-                        <h4>Selected Document:</h4>
-                        <p><strong>Name:</strong> {file.name}</p>
-                        <p><strong>Size:</strong> {(file.size / 1024).toFixed(2)} KB</p>
-                        <p><strong>Type:</strong> {file.type || 'Unknown'}</p>
-                    </div>
-                )}
-
-                {file && status !== "processing" && (
-                    <div className="process-section">
-                        <button onClick={handleProcessDocument} className="process-btn">
-                            🤖 Analyze with AI
-                        </button>
-                        <p className="process-help-text">
-                            Our AI will simplify the legal document and highlight important points
-                        </p>
-                    </div>
-                )}
-
-                {status === "processing" && (
-                    <div className="processing-section">
-                        <div className="progress-container">
-                            <div className="progress-bar">
-                                <div
-                                    className="progress-fill"
-                                    style={{ width: `${progress}%` }}
-                                />
-                            </div>
-                            <p className="progress-text">{progress}%</p>
-                        </div>
-                        <p className="progress-message">{progressMessage}</p>
-                    </div>
-                )}
-
-                {status === "success" && !showResults && (
-                    <div className="success-section">
-                        <p className="success-message">✅ Document processed successfully!</p>
-                        <button onClick={() => setShowResults(true)} className="view-results-btn">
-                            View Results
-                        </button>
-                    </div>
-                )}
-
-                {status === "error" && (
-                    <div className="error-section">
-                        <p className="error-message">❌ {progressMessage || "Processing failed. Please try again."}</p>
-                        <button onClick={() => setStatus("idle")} className="retry-btn">
-                            Try Again
-                        </button>
-                    </div>
-                )}
+      {file && (
+        <div className="ui-card" style={{ marginTop: 14, padding: 14 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 12,
+            }}
+          >
+            <div style={{ minWidth: 0 }}>
+              <div
+                style={{
+                  fontWeight: 700,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {file.name}
+              </div>
+              <div className="pill">
+                {(file.size / 1024).toFixed(1)} KB • {file.type || "unknown"}
+              </div>
             </div>
+            <button className="btn btn-ghost" onClick={() => setFile(null)}>
+              Remove
+            </button>
+          </div>
+        </div>
+      )}
 
-            {showResults && result && (
-                <DocumentResults
-                    result={result}
-                    onClose={handleCloseResults}
-                    onSaveToHistory={handleSaveToHistory}
-                />
-            )}
-        </>
-    );
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto",
+          gap: 10,
+          marginTop: 14,
+        }}
+      >
+        <div className="progress" aria-label="processing progress">
+          <div className="fill" style={{ width: `${progress}%` }} />
+        </div>
+        <button
+          className="btn btn-primary"
+          disabled={!file || status === "processing"}
+          onClick={handleProcessDocument}
+        >
+          {status === "processing" ? "Analyzing…" : "Analyze with AI"}
+        </button>
+      </div>
+      <div style={{ marginTop: 8, color: "var(--muted)" }}>
+        {progressMessage}
+      </div>
+
+      {status === "success" && !showResults && (
+        <div
+          className="ui-card"
+          style={{ marginTop: 14, padding: 14, borderLeft: "3px solid var(--success)" }}
+        >
+          ✅ Processed successfully.{" "}
+          <button className="btn btn-ghost" onClick={() => setShowResults(true)}>
+            View Results
+          </button>
+        </div>
+      )}
+      {status === "error" && (
+        <div
+          className="ui-card"
+          style={{ marginTop: 14, padding: 14, borderLeft: "3px solid var(--danger)" }}
+        >
+          ❌ {progressMessage || "Processing failed. Please try again."}
+        </div>
+      )}
+
+      {showResults && result && (
+        <div className="results-panel reveal" style={{ marginTop: 16 }}>
+          <CleanResults
+            result={result}
+            onClose={() => {
+              setShowResults(false);
+              setResult(null);
+            }}
+            onSave={() => {
+              try {
+                saveResultToLocal(result, "upload");
+                alert("Saved to History (local)");
+              } catch {}
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
 }

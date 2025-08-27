@@ -353,3 +353,5 @@
     gap: 5px;
   }
 }
+
+.results-panel { max-height: 60vh; overflow:auto }
