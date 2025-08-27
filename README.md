@@ -1,3 +1,10 @@
+
+Welcome to our TechWise 2025 final project called TOS Simplifyer where we dive into the world of API's, Deployment, and JS.
+
+![Static Badge](https://img.shields.io/badge/Made_with-Love%3C3-pink)
+
+
+
 ## Inspiration
 
 Legal documents are everywhere—sign-ups, subscriptions, returns, and job apps—but most people don’t read them because they’re dense and confusing. Our team has all clicked “I agree” without fully understanding what we were signing. We wanted to build something that turns intimidating ToS jargon into clear, plain language and helps users quickly look up unfamiliar terms. The goal: make it realistic for anyone to understand what they’re agreeing to—fast.
