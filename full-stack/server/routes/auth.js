@@ -7,7 +7,25 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const { generateToken, generateRefreshToken, authenticate } = require('../middleware/auth');
+const authenticate = require('../middleware/auth');
+
+// Helper to generate JWT access token
+function generateToken(user) {
+  return jwt.sign(
+    { id: user._id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+  );
+}
+
+// Helper to generate JWT refresh token
+function generateRefreshToken(user) {
+  return jwt.sign(
+    { id: user._id },
+    process.env.JWT_REFRESH_SECRET,
+    { expiresIn: '30d' }
+  );
+}
 
 const router = express.Router();
 
