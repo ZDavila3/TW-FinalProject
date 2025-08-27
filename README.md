@@ -1,8 +1,8 @@
-##Inspiration
+## Inspiration
 
 Legal documents are everywhere—sign-ups, subscriptions, returns, and job apps—but most people don’t read them because they’re dense and confusing. Our team has all clicked “I agree” without fully understanding what we were signing. We wanted to build something that turns intimidating ToS jargon into clear, plain language and helps users quickly look up unfamiliar terms. The goal: make it realistic for anyone to understand what they’re agreeing to—fast.
 
-##What it does
+## What it does
 
 This web app simplifies Terms of Service (or any pasted/uploaded text) into plain, readable English and lets users look up tricky words on the spot.
 
@@ -14,7 +14,7 @@ Highlight & define: Unfamiliar words are highlighted; clicking a word opens an i
 
 Reading aids: Estimated reading level, key bullets (“What you’re agreeing to”), and quick flags (e.g., data sharing, auto-renewal) help users spot the important stuff.
 
-##How we built it
+## How we built it
 
 Frontend stack: React + Vite for a fast dev experience, TailwindCSS for utility-first styling, and plain JavaScript for app logic.
 
@@ -54,7 +54,7 @@ ESLint/Prettier for consistent code.
 
 Environment-based config so the lookup service endpoint can be swapped (local vs. hosted) without code changes.
 
-##Challenges we ran into
+## Challenges we ran into
 
 Preserving meaning while simplifying: It’s easy to make text shorter; it’s hard to keep the legal intent intact. We added rules to avoid rewriting dates, amounts, or defined terms and to keep “must/shall/may” distinctions.
 
@@ -66,7 +66,7 @@ File handling quirks: Uploaded .txt files come with odd encodings and invisible 
 
 Build/config bumps: Vite + Tailwind are fast, but we had to tune PostCSS/Tailwind purge and ensure imports stayed ESM-friendly.
 
-##Future plans
+## Future plans
 
 More file types: Add PDF/Docx support with server-side extraction for better fidelity.
 
@@ -82,7 +82,7 @@ Personal glossary: Let users save tricky terms and see them auto-explained in fu
 
 Privacy guardrails: On-device processing by default, with optional cloud for heavy documents—plus a “no-store” mode.
 
-##Language & Tools
+## Language & Tools
 
 Frameworks: React, Vite
 
